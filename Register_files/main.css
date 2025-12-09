@@ -1,0 +1,636 @@
+@font-face {
+  font-family: DPDFontRegular;
+  src: url(../fonts/PlutoSansDPDRegular-Web.woff);
+}
+
+@font-face {
+  font-family: DPDFontLight;
+  src: url(../fonts/PlutoSansDPDLight-Web.woff);
+}
+
+body {
+  font-family: DPDFontLight;
+  height: 100vh;
+  margin: 0;
+}
+
+a:hover {
+  color: #dc0032;
+}
+
+.login-page {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* content style */
+main {
+  display: flex;
+  flex-grow: 1;
+}
+
+.login-content {
+  display: flex;
+  width: 50%;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 10px;
+}
+
+.login-content .login-box {
+  width: 386px;
+  color: #414042;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.login-content .register-box {
+  color: #414042;
+  margin: 0 auto;
+  width: 500px;
+  border: 1px solid lightgrey;
+  padding: 10px;
+}
+
+.login-content h1 {
+  color: #414042;
+  font-size: 24px;
+  line-height: 29px;
+  margin-bottom: 10px;
+}
+
+.login-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.bu-logo {
+  display: none;
+}
+
+.login-content .login-box h1 {
+  font-size: 24px;
+  line-height: 29px;
+  margin-bottom: 10px;
+}
+
+.login-content .login-box p {
+  font-size: 14px;
+  line-height: 17px;
+  margin-bottom: 34px;
+}
+
+.login-content .login-box .dif-login {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 230px;
+  margin: 0 auto 20px;
+}
+
+.login-content .login-box .dif-login a {
+  display: block;
+  width: 62px;
+  height: 62px;
+}
+
+.dif-login a.apple-login {
+  background-image: url("../img/apple.svg");
+}
+
+.dif-login a.facebook-login {
+  background-image: url("../img/facebook.svg");
+}
+
+.dif-login a.google-login {
+  background-image: url("../img/google.svg");
+}
+
+/* register form*/
+.dif-register {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.register-text {
+  text-align: left;
+  font-size: x-small;
+}
+
+.register-title {
+  text-align: left;
+  color: #414042;
+  font-size: 1.4rem;
+}
+
+.dif-register .social-providers {
+  display: flex;
+  flex-direction: row;
+  margin: 10px 0px;
+  justify-content: center;
+}
+
+.apple-login {
+  display: block;
+  width: 62px;
+  height: 62px;
+  margin: 0 10px;
+  background-image: url("../img/apple.svg");
+}
+
+.facebook-login {
+  display: block;
+  width: 62px;
+  height: 62px;
+  margin: 0 10px;
+  background-image: url("../img/facebook.svg");
+}
+
+.google-login {
+  display: block;
+  width: 62px;
+  height: 62px;
+  margin: 0 10px;
+  background-image: url("../img/google.svg");
+}
+
+/* login form */
+.login-form .form-group {
+  margin-bottom: 20px;
+}
+
+.form-floating > .form-control {
+  background-color: #ffffff;
+  border: 1px solid #808285;
+  width: 100%;
+  height: 45px;
+  margin: 0;
+  padding: 15px 10px;
+  color: #808285;
+  font-size: 12px;
+  line-height: 16px;
+  text-align: left;
+  border-radius: 0;
+  cursor: text;
+  position: relative;
+}
+
+.form-floating > .form-control[value] {
+  color: #414042;
+}
+
+.delete-icon {
+  right: 0.5rem;
+  width: 25px;
+  position: absolute;
+  background-image: url("../img/clear_black_24dp.svg");
+  height: 25px;
+  z-index: 1;
+  top: 0.5rem;
+  cursor: pointer;
+}
+
+.delete-icon.hide {
+  visibility: hidden;
+}
+
+.form-control:focus {
+  box-shadow: none;
+}
+
+.form-floating.error label,
+.form-floating.error input {
+  border-color: #dc0032 !important;
+  color: #dc0032 !important;
+  width: 100%;
+}
+
+.form-floating.error label {
+  border: 0;
+}
+
+.login-form label {
+  color: #808285;
+  font-size: 13px;
+  line-height: 16px;
+  text-align: left;
+}
+
+.form-floating > label {
+  padding: 15px 10px;
+}
+
+.login-form .password .see-password .unsee-password {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+}
+
+.hr {
+  color: #414042;
+  font-family: DPDFontRegular;
+  font-size: 13px;
+  line-height: 17px;
+  text-align: center;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.hr::before,
+.hr::after {
+  content: "";
+  display: block;
+  height: 1px;
+  width: 41.5%;
+  background: #000;
+  position: absolute;
+  top: 50%;
+}
+
+.hr::after {
+  right: 0;
+}
+
+#password {
+  margin-bottom: 10px;
+}
+
+.see-password {
+  display: block;
+  width: 41px;
+  height: 41px;
+  background-image: url("../img/password-invisible.png");
+  cursor: pointer;
+  top: 10px;
+  right: 0px;
+  background-repeat: no-repeat;
+  position: absolute;
+}
+
+.unsee-password {
+  display: block;
+  width: 41px;
+  height: 41px;
+  background-image: url("../img/password-visible.png");
+  cursor: pointer;
+  top: 10px;
+  right: 0px;
+  background-repeat: no-repeat;
+  position: absolute;
+}
+
+.submit-row {
+  margin-top: 40px;
+}
+
+.forgot-password,
+.submit-row a,
+.registration-row a {
+  color: #808285;
+  font-family: DPDFontRegular;
+  font-size: 12px;
+  line-height: 14px;
+}
+
+.forgot-password {
+  text-decoration: underline;
+}
+
+.submit-row a span,
+.registration-row a span {
+  color: #dc0032;
+}
+
+.submit-row button {
+  height: 45px;
+  border-radius: 0;
+  color: #ffffff;
+  font-family: DPDFontRegular;
+  font-size: 14px;
+  line-height: 17px;
+  width: 100%;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.pf-m-primary,
+.btn-primary,
+.btn-danger {
+  background-color: #dc0032;
+  border-color: #dc0032;
+  color: #fff;
+  border: 1px;
+  border-radius: 0.5rem;
+  background-image: none;
+  background-repeat: no-repeat;
+  line-height: 1.8;
+}
+
+.pf-m-primary:hover,
+.btn-primary:hover,
+.btn-danger:hover {
+  background-color: #a90034;
+  border-color: #a90034;
+  color: #fff;
+}
+
+.img-container {
+  background-image: url("../img/delivery_bicycle_5.jpg");
+  background-size: cover;
+  flex-grow: 1;
+}
+
+.login-pf-settings {
+  display: flex;
+}
+
+.login-pf-settings > div {
+  flex-grow: 1;
+  width: 50%;
+}
+
+.login-pf-settings > div:first-of-type {
+  margin-right: 10px;
+}
+
+.login-pf-settings > div:last-of-type {
+  margin-left: 10px;
+}
+
+#go-back {
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  color: #dc0032;
+  border: 1px solid #dc0032;
+}
+
+#kc-decline {
+  background-color: #808285;
+  justify-content: center;
+}
+
+.kc-terms-text {
+  color: #808285;
+  font-size: 13px;
+  line-height: 16px;
+  text-align: left;
+  text-align: left;
+}
+
+.terms-button {
+  border-style: none;
+}
+
+.go-back-button {
+  line-height: 45px;
+  font-size: 14px;
+  display: block;
+  height: 45px;
+  text-decoration: none;
+  border-radius: 0;
+  position: relative;
+}
+
+.remember-me label {
+  font-size: 12px;
+}
+.remember-me input[type="checkbox"] {
+  width: 15px;
+  height: 15px;
+  vertical-align: middle;
+}
+
+/* register form */
+#kc-register-form .form-group:nth-child(1) {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+#kc-register-form .form-group:nth-child(1) .form-floating {
+  width: 48%;
+}
+
+/* terms and conditions form */
+.form-actions {
+  margin-top: 1rem;
+}
+
+/* footer style */
+footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #cac4be;
+  min-height: 63px;
+  width: 100%;
+  color: #414042;
+  font-size: 11px;
+}
+
+.dpdg-logo-redgrad-rgb {
+  display: inline-block;
+  width: 81px;
+  height: 21px;
+}
+
+.imprint-privacy,
+.dpd-2021 {
+  margin: 0 36px;
+}
+
+.imprint-privacy {
+  line-height: 18px;
+  text-align: right;
+}
+
+.imprint-privacy a {
+  color: #414042;
+  text-decoration: none;
+}
+
+.imprint-privacy a:first-of-type {
+  color: #414042;
+  margin-right: 7px;
+  padding-right: 10px;
+}
+
+.dpd-2021 {
+  display: flex;
+  align-items: center;
+  line-height: 14px;
+  text-align: left;
+}
+
+.dpd-2021 span {
+  padding-top: 3px;
+  width: max-content;
+}
+
+.dpd-2021 img {
+  padding-right: 6px;
+  height: 30px;
+}
+
+.has-error {
+  color: #dc0032;
+  padding: 0.1rem 0;
+  font-size: 13px;
+  display: block;
+  text-align: left;
+}
+
+.text-start {
+  font-size: 20px;
+  margin: 20px 0px;
+}
+
+.text-start label.mandatory {
+  font-size: 11px;
+}
+
+.text-start span {
+  color: #dc0032;
+}
+
+.asterisk {
+  color: red;
+}
+
+/* alerts */
+.alert {
+  border-radius: 0;
+  padding: 0.5rem;
+  font-size: 13px;
+}
+.alert-danger {
+  background-color: transparent;
+  border-color: #dc0032;
+}
+
+.form-check .form-check-input[type="checkbox"] {
+  border-radius: 0;
+  border-color: #808285;
+  margin-top: -1px;
+}
+.form-check .form-check-input[type="checkbox"]:focus {
+  outline: 0;
+  box-shadow: none;
+}
+
+.form-check-input:checked {
+  background-color: black;
+}
+
+.form-check-input:checked[type="checkbox"] {
+  filter: invert(1);
+}
+
+.form-check .form-check-label a {
+  color: #808285;
+}
+.form-check .form-check-label a:hover {
+  color: #dc0032;
+}
+.form-check.error label,
+.form-check.error input {
+  color: #dc0032 !important;
+  border-color: #dc0032 !important;
+}
+
+.error-box {
+  border: 1px solid #dc0032;
+  margin: 10x 0px;
+  color: #dc0032;
+}
+
+.error-box li {
+  margin: 5px 0px;
+  line-height: 12px;
+}
+
+.show {
+  display: revert;
+}
+
+/* Confirmation Page */
+.email-verify-msg {
+  font-size: 20px;
+  line-height: 30px;
+  font-weight: bold;
+  width: max-content;
+  margin: 20px auto;
+}
+
+#invalid-email-error,
+#missing-email-error {
+  display: none;
+}
+
+.instruction a {
+  color: #414042;
+}
+
+@media (max-width: 1024px) {
+  .login-content .register-box {
+    width: auto;
+  }
+}
+
+@media (max-width: 991px) {
+  .login-content {
+    width: 100%;
+  }
+  .delivery-bicycle {
+    display: none;
+  }
+}
+
+@media (max-width: 425px) {
+  .login-content .login-box,
+  .login-content .register-box {
+    width: auto;
+  }
+
+  .login-content {
+    padding: 0px 10px;
+  }
+
+  /* register form */
+  #kc-register-form .form-group:nth-child(1) {
+    display: flex;
+    flex-direction: column;
+  }
+
+  #kc-register-form .form-group:nth-child(1) .form-floating {
+    width: 100%;
+  }
+
+  #kc-register-form .form-group .form-floating:nth-child(1) {
+    margin-bottom: 20px;
+  }
+
+  #kc-registration-container {
+    margin-bottom: 1rem;
+  }
+
+  .login-pf-settings {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .login-pf-settings > div:last-of-type,
+  .login-pf-settings > div:first-of-type {
+    margin: 0;
+    width: 100%;
+  }
+}
+
+.privacy-link {
+  color: #dc0032;
+}
