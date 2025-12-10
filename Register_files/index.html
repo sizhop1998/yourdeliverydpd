@@ -1,152 +1,173 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <title>Login | Registration » myDPD</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <title>Registration | myDPD</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- Your existing CSS files -->
+    <!-- Your existing CSS -->
     <link rel="stylesheet" href="bootstrap.min.css">
     <link rel="stylesheet" href="main.css">
 
-    <link rel="icon" type="image/png" href="./images/favicon/favicon-32x32.png">
 </head>
+
 <body class="login-page">
 
 <header>
-    <!-- Simple DPD-style header, uses your own logo file -->
-    <div style="padding: 10px 20px; display:flex; align-items:center; justify-content:space-between;">
+    <div style="padding: 15px 25px; display:flex; justify-content:space-between; align-items:center;">
         <div style="display:flex; align-items:center;">
-            <!-- Change path to your logo if needed -->
-            <img src="dpd-logo.png" alt="DPD" style="height:30px; margin-right:10px;">
-            <span style="font-family:DPDFontRegular; font-size:18px; color:#414042;">myDPD</span>
+            <img src="dpd-logo.png" alt="DPD" style="height:32px; margin-right:10px;">
+            <span style="font-size:20px; font-weight:600; color:#333;">myDPD</span>
         </div>
     </div>
 </header>
 
 <main>
-    <!-- Left side: login/registration content -->
     <div class="login-content">
-
-        <!-- Registration box styled by main.css -->
         <div class="register-box">
+
             <div class="login-header">
-                <h1 class="register-title">Registration</h1>
+                <h1 class="register-title">Create Your Account</h1>
                 <p class="register-text">
-                    Please enter your details to create your account.
+                    Please enter your details to register.
                 </p>
             </div>
 
             <div class="text-start">
-                <label class="mandatory">Fields marked with <span>*</span> are mandatory.</label>
+                <label class="mandatory">Fields marked <span>*</span> are required.</label>
             </div>
 
-            <!-- REGISTRATION FORM -->
-            <!-- This is the important part that sends data to register.php -->
-            <form id="kc-register-form" class="dif-register" method="POST" action="register.php">
+            <!-- ========================== -->
+            <!--     REAL DPD FORM INPUTS   -->
+            <!-- ========================== -->
 
-                <!-- First + Last name in one row (main.css has rules for this) -->
+            <form id="registerForm" class="dif-register" method="POST" action="register.php">
+
+                <!-- FIRST + LAST NAME -->
                 <div class="form-group">
+
                     <div class="form-floating">
-                        <input
+                        <input 
                             type="text"
+                            data-cy="firstName"
+                            id="firstName"
                             class="form-control"
-                            id="first_name"
-                            name="first_name"
                             placeholder="First name"
+                            name="firstName"
+                            value=""
+                            aria-invalid=""
+                            maxlength="35"
                             required
                         >
-                        <label for="first_name">First name <span class="asterisk">*</span></label>
+                        <label for="firstName">First name <span class="asterisk">*</span></label>
                     </div>
 
                     <div class="form-floating">
-                        <input
+                        <input 
                             type="text"
+                            data-cy="lastName"
+                            id="lastName"
                             class="form-control"
-                            id="last_name"
-                            name="last_name"
                             placeholder="Last name"
+                            name="lastName"
+                            value=""
+                            aria-invalid=""
+                            maxlength="35"
                             required
                         >
-                        <label for="last_name">Last name <span class="asterisk">*</span></label>
+                        <label for="lastName">Last name <span class="asterisk">*</span></label>
                     </div>
+
                 </div>
 
-                <!-- Email -->
+                <!-- EMAIL -->
                 <div class="form-group">
                     <div class="form-floating">
                         <input
-                            type="email"
-                            class="form-control"
+                            type="text"
+                            data-cy="email"
                             id="email"
-                            name="email"
+                            class="form-control"
                             placeholder="Email address"
+                            name="email"
+                            value=""
+                            autocomplete="email"
+                            aria-invalid=""
+                            maxlength="100"
                             required
                         >
                         <label for="email">Email address <span class="asterisk">*</span></label>
                     </div>
                 </div>
 
-                <!-- Password -->
+                <!-- PASSWORD -->
                 <div class="form-group password">
-                    <div class="form-floating" style="position:relative;">
+                    <div class="form-floating">
                         <input
+                            data-cy="password"
                             type="password"
-                            class="form-control"
                             id="password"
-                            name="password"
+                            class="form-control"
                             placeholder="Password"
+                            name="password"
+                            autocomplete="new-password"
+                            aria-invalid=""
+                            maxlength="20"
+                            aria-autocomplete="list"
                             required
                         >
                         <label for="password">Password <span class="asterisk">*</span></label>
                     </div>
                 </div>
 
-                <!-- Retype password -->
+                <!-- REPEAT PASSWORD -->
                 <div class="form-group password">
-                    <div class="form-floating" style="position:relative;">
+                    <div class="form-floating">
                         <input
+                            data-cy="password-confirm"
                             type="password"
+                            id="password-confirm"
                             class="form-control"
-                            id="password2"
-                            name="password2"
                             placeholder="Retype password"
+                            name="password-confirm"
+                            aria-invalid=""
+                            maxlength="20"
                             required
                         >
-                        <label for="password2">Retype password <span class="asterisk">*</span></label>
+                        <label for="password-confirm">Retype password <span class="asterisk">*</span></label>
                     </div>
                 </div>
 
-                <!-- Submit button -->
+                <!-- SUBMIT BUTTON -->
                 <div class="submit-row">
-                    <button type="submit" class="btn btn-danger">
+                    <button type="submit" class="btn btn-danger btn-block">
                         Register
                     </button>
                 </div>
 
             </form>
-            <!-- END REGISTRATION FORM -->
+            <!-- END FORM -->
+
         </div>
     </div>
 
-    <!-- Right side image, styled from main.css (.img-container) -->
-    <div class="img-container delivery-bicycle">
-        <!-- background image is defined in main.css: delivery_bicycle_5.jpg -->
-    </div>
+    <!-- Right side image (handled by main.css) -->
+    <div class="img-container delivery-bicycle"></div>
 </main>
 
 <footer>
     <div class="dpd-2021">
-        <img src="geopost-logo.png" alt="Geopost">
+        <img src="geopost-logo.png" alt="Geopost" style="height:20px;">
         <span>© 2025 myDPD / Your Company</span>
     </div>
+
     <div class="imprint-privacy">
         <a href="#">Imprint</a>
         <a href="#">Privacy</a>
     </div>
 </footer>
 
-<!-- Your JS (optional) -->
+<!-- JS -->
 <script src="js/jquery-3.7.1.min.js"></script>
 <script src="js/DPDDefault.js"></script>
 
